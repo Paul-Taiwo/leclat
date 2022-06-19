@@ -1,9 +1,11 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { Admin, User } from '@prisma/client';
 import { verify } from 'argon2';
 
 import { PrismaService } from 'src/prisma/prisma.service';
+import { AuthDto } from './dto';
 
 @Injectable()
 export class AuthService {
@@ -33,20 +35,37 @@ export class AuthService {
     };
   }
 
+  async comparePassword(user: User | Admin, dto: AuthDto) {
+    // compare password
+    const pwMatches = await verify(user.password, dto.password);
+    // if password incorrect throw exception
+    if (!pwMatches) throw new ForbiddenException('Credentials incorrect');
+    return this.signToken(user.id, user.email);
+  }
+
   async signIn(dto: AuthDto) {
-    // find the user by email
-    const user = await this.prisma.user.findUnique({
+    /* Checking if the email exists in the admin table. */
+    const admin = await this.prisma.admin.findUnique({
       where: {
         email: dto.email,
       },
     });
-    // if user does not exist throw exception
-    if (!user) throw new ForbiddenException('Credentials incorrect');
 
-    // compare password
-    const pwMatches = await verify(user.hash, dto.password);
-    // if password incorrect throw exception
-    if (!pwMatches) throw new ForbiddenException('Credentials incorrect');
-    return this.signToken(user.id, user.email);
+    /* Checking if the email exists in the admin table. If it does not exist, it will check if the
+    email exists in the user table. If it does not exist, it will throw an exception. If it does
+    exist, it will compare the password. */
+    if (!admin) {
+      const user = await this.prisma.user.findUnique({
+        where: {
+          email: dto.email,
+        },
+      });
+      // if user does not exist throw exception
+      if (!user) throw new ForbiddenException('Credentials incorrect');
+
+      return this.comparePassword(user, dto);
+    } else {
+      return this.comparePassword(admin, dto);
+    }
   }
 }
