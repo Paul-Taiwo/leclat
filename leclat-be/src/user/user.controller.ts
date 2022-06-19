@@ -4,18 +4,17 @@ import { JwtGuard } from 'src/auth/guard';
 import { RolesGuard } from 'src/auth/guard/role.guard';
 import { Roles } from 'src/decorators/role.decorator';
 import { Role } from 'src/enum';
-
-import { ClassService } from './class.service';
+import { UserService } from './user.service';
 
 @UseGuards(JwtGuard)
-@Controller('classes')
-export class ClassController {
-  constructor(private readonly classService: ClassService) {}
+@Controller('users')
+export class UserController {
+  constructor(private readonly userService: UserService) {}
 
   @Get()
   @Roles(Role.ADMIN)
   @UseGuards(RolesGuard)
-  getClasses() {
-    return this.classService.getClasses();
+  getUsers() {
+    return this.userService.getUsers();
   }
 }
