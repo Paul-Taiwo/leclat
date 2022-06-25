@@ -10,6 +10,8 @@ import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { UserService } from './user/user.service';
 import { ClassService } from './class/class.service';
+import { CourseService } from './user copy/course.service';
+import { CourseModule } from './user copy/course.module';
 
 @Module({
   imports: [
@@ -20,8 +22,9 @@ import { ClassService } from './class/class.service';
     PrismaModule,
     ClassModule,
     UserModule,
+    CourseModule,
   ],
   controllers: [AppController, UserController],
-  providers: [AppService, UserService, ClassService],
+  providers: [AppService, UserService, ClassService, CourseService],
 })
 export class AppModule {}
