@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
+import { UserDto } from 'src/dto/user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -15,6 +16,22 @@ export class ClassService {
     });
     return {
       classes,
+    };
+  }
+
+  async getClass({ classId }: UserDto) {
+    const classes = await this.prisma.class.findUnique({
+      where: {
+        id: classId,
+      },
+      include: {
+        Course: true,
+      },
+    });
+
+    return {
+      message: 'success',
+      data: { ...classes },
     };
   }
 }
