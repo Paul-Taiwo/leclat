@@ -31,9 +31,11 @@ export class UserService {
   }
 
   async addUser({ email, name, phone, classId }: UserDto) {
+    /* Hashing the password. */
     const password = await hash('password');
 
     try {
+      /* Checking if the class has a user. */
       const { User } = await this.prisma.class.findUnique({
         where: {
           id: classId,
@@ -43,10 +45,12 @@ export class UserService {
         },
       });
 
+      /* Checking if the class has a user. */
       if (User && User.length) {
         throw new BadRequestException('Class can only have one user');
       }
 
+      /* Creating a user. */
       const user = await this.prisma.user.create({
         data: {
           email,
@@ -57,6 +61,7 @@ export class UserService {
         },
       });
 
+      /* Deleting the password from the user object before returning it. */
       delete user.password;
 
       return {
