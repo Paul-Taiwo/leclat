@@ -50,6 +50,20 @@ export class UserService {
         throw new BadRequestException('Class can only have one user');
       }
 
+      /* Checking if the user with the email already exists. */
+      const userInDb = await this.prisma.user.findUnique({
+        where: {
+          email,
+        },
+      });
+
+      /* Checking if the user with the email already exists. */
+      if (userInDb) {
+        throw new BadRequestException(
+          `User with email: ${email} is already attached to a class`,
+        );
+      }
+
       /* Creating a user. */
       const user = await this.prisma.user.create({
         data: {
