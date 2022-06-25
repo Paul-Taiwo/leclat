@@ -30,16 +30,22 @@ export class UserController {
   }
 
   @Post()
+  @Roles(Role.ADMIN)
+  @UseGuards(RolesGuard)
   addUser(@Body() dto: UserDto) {
     return this.userService.addUser(dto);
   }
 
   @Patch(':id')
+  @Roles(Role.ADMIN)
+  @UseGuards(RolesGuard)
   editUser(@Param('id', ParseUUIDPipe) userId: string, @Body() dto: UserDto) {
     return this.userService.editUser(userId, dto);
   }
 
   @Delete(':id')
+  @Roles(Role.ADMIN)
+  @UseGuards(RolesGuard)
   deleteUser(@Param('id', ParseUUIDPipe) userId: string) {
     return this.userService.deleteUser(userId);
   }
