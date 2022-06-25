@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseUUIDPipe,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 
 import { JwtGuard } from 'src/auth/guard';
 import { RolesGuard } from 'src/auth/guard/role.guard';
@@ -22,5 +31,10 @@ export class UserController {
   @Post()
   addUser(@Body() dto: UserDto) {
     return this.userService.addUser(dto);
+  }
+
+  @Patch(':id')
+  editUser(@Param('id', ParseUUIDPipe) userId: string, @Body() dto: UserDto) {
+    return this.userService.editUser(userId, dto);
   }
 }

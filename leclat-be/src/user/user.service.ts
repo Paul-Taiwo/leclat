@@ -72,4 +72,36 @@ export class UserService {
       throw error;
     }
   }
+
+  async editUser(userId: string, dto: UserDto) {
+    // get the user by id
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    /* Checking if the user exists. */
+    if (user === null) {
+      throw new BadRequestException(`No user with id:${userId} found`);
+    }
+
+    /* Updating the user with the new data. */
+    const updatedUser = await this.prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        ...dto,
+      },
+    });
+
+    /* Deleting the password from the user object before returning it. */
+    delete updatedUser.password;
+
+    return {
+      message: 'User updated successfully',
+      user: { ...updatedUser },
+    };
+  }
 }
