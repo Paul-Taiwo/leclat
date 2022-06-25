@@ -10,8 +10,8 @@ import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { UserService } from './user/user.service';
 import { ClassService } from './class/class.service';
-import { CourseService } from './user copy/course.service';
-import { CourseModule } from './user copy/course.module';
+import { CourseService } from './course/course.service';
+import { CourseModule } from './course/course.module';
 
 @Module({
   imports: [
