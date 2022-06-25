@@ -8,7 +8,7 @@
   "scripts": {
     "db:dev:rm": "docker compose rm dev-db -s -f -v",
     "db:dev:up": "docker compose up dev-db -d",
-    "prisma:dev:deploy": "prisma migrate deploy",
+    "prisma:dev:deploy": "prisma migrate deploy && prisma db seed",
     "db:dev:restart": "yarn db:dev:rm && yarn db:dev:up && sleep 1 && yarn prisma:dev:deploy",
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -38,6 +38,7 @@
     "argon2": "^0.28.5",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "generate-password": "^1.7.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.13",

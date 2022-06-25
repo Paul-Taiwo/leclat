@@ -5,7 +5,7 @@ import { Admin, User } from '@prisma/client';
 import { verify } from 'argon2';
 
 import { PrismaService } from 'src/prisma/prisma.service';
-import { AuthDto } from './dto';
+import { AuthDto } from '../dto';
 
 @Injectable()
 export class AuthService {
