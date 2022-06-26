@@ -22,25 +22,22 @@ export class LecturerService {
     };
   }
 
-  // async addLecturer({ name, code, classId }: LecturerDto) {
-  //   try {
-  //     // TODO: Check course code uniqueness
-  //     const course = await this.prisma.course.create({
-  //       data: {
-  //         name,
-  //         code,
-  //         classId,
-  //       },
-  //     });
+  async addLecturer(dto: LecturerDto) {
+    try {
+      const lecturer = await this.prisma.lecturer.create({
+        data: {
+          ...dto,
+        },
+      });
 
-  //     return {
-  //       message: 'Lecturer Created',
-  //       data: course,
-  //     };
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
+      return {
+        message: 'Lecturer Created',
+        data: lecturer,
+      };
+    } catch (error) {
+      throw error;
+    }
+  }
 
   // async editLecturer(courseId: string, dto: LecturerDto) {
   //   /* Updating the course with the new data. */

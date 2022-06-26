@@ -30,12 +30,12 @@ export class LecturerController {
     return this.courseService.getLecturers();
   }
 
-  // @Post()
-  // @Roles(Role.USER)
-  // @UseGuards(RolesGuard)
-  // addLecturer(@Body() dto: LecturerDto) {
-  //   return this.courseService.addLecturer(dto);
-  // }
+  @Post()
+  @Roles(Role.USER)
+  @UseGuards(RolesGuard)
+  addLecturer(@Body() dto: LecturerDto) {
+    return this.courseService.addLecturer(dto);
+  }
 
   // @Patch(':id')
   // @Roles(Role.USER)
