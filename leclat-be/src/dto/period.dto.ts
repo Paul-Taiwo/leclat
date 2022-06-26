@@ -1,17 +1,16 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsDateString, IsString } from 'class-validator';
 
 export class PeriodDto {
-  @IsEmail()
   @IsNotEmpty()
-  email: string;
+  day: string;
 
-  @IsString()
+  @IsDateString()
   @IsNotEmpty()
-  name: string;
+  startTime: string;
 
-  @IsString()
+  @IsDateString()
   @IsNotEmpty()
-  phone: string;
+  endTime: string;
 
   @IsString()
   @IsNotEmpty()

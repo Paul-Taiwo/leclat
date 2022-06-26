@@ -30,12 +30,12 @@ export class PeriodController {
     return this.courseService.getPeriods();
   }
 
-  // @Post()
-  // @Roles(Role.USER)
-  // @UseGuards(RolesGuard)
-  // addPeriod(@Body() dto: PeriodDto) {
-  //   return this.courseService.addPeriod(dto);
-  // }
+  @Post()
+  @Roles(Role.USER)
+  @UseGuards(RolesGuard)
+  addPeriod(@Body() dto: PeriodDto) {
+    return this.courseService.addPeriod(dto);
+  }
 
   // @Patch(':id')
   // @Roles(Role.USER)

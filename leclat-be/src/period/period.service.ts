@@ -22,22 +22,22 @@ export class PeriodService {
     };
   }
 
-  // async addPeriod(dto: PeriodDto) {
-  //   try {
-  //     const period = await this.prisma.period.create({
-  //       data: {
-  //         ...dto,
-  //       },
-  //     });
+  async addPeriod(dto: PeriodDto) {
+    try {
+      const period = await this.prisma.period.create({
+        data: {
+          ...dto,
+        },
+      });
 
-  //     return {
-  //       message: 'Period Created',
-  //       data: period,
-  //     };
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
+      return {
+        message: 'Period Created',
+        data: period,
+      };
+    } catch (error) {
+      throw error;
+    }
+  }
 
   // async editPeriod(periodId: string, dto: PeriodDto) {
   //   /* Updating the period with the new data. */

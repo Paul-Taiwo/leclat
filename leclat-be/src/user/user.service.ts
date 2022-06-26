@@ -26,7 +26,8 @@ export class UserService {
     });
 
     return {
-      users: filteredUser,
+      message: 'success',
+      data: filteredUser,
     };
   }
 

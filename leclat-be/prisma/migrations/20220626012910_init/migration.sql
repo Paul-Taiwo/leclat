@@ -66,6 +66,7 @@ CREATE TABLE "Lecturer" (
 -- CreateTable
 CREATE TABLE "Period" (
     "id" TEXT NOT NULL,
+    "day" TEXT NOT NULL,
     "startTime" TIMESTAMP(3) NOT NULL,
     "endTime" TIMESTAMP(3) NOT NULL,
     "courseId" TEXT NOT NULL,
@@ -80,6 +81,9 @@ CREATE UNIQUE INDEX "Admin_email_key" ON "Admin"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Course_code_key" ON "Course"("code");
 
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_classId_fkey" FOREIGN KEY ("classId") REFERENCES "Class"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
