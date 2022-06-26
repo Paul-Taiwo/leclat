@@ -1,10 +1,4 @@
-import {
-  ForbiddenException,
-  Injectable,
-  BadRequestException,
-} from '@nestjs/common';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
-import { hash } from 'argon2';
+import { Injectable } from '@nestjs/common';
 
 import { CourseDto } from 'src/dto/course.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -69,28 +63,16 @@ export class CourseService {
     };
   }
 
-  // async deleteCourse(userId: string) {
-  //   // get the user by id
-  //   const user = await this.prisma.user.findUnique({
-  //     where: {
-  //       id: userId,
-  //     },
-  //   });
+  async deleteCourse(courseId: string) {
+    /* Deleting the user. */
+    await this.prisma.course.delete({
+      where: {
+        id: courseId,
+      },
+    });
 
-  //   /* Checking if the user exists. */
-  //   if (user === null) {
-  //     throw new BadRequestException(`No user with id:${userId} found`);
-  //   }
-
-  //   /* Deleting the user. */
-  //   await this.prisma.user.delete({
-  //     where: {
-  //       id: userId,
-  //     },
-  //   });
-
-  //   return {
-  //     message: 'Course deleted successfully',
-  //   };
-  // }
+    return {
+      message: 'Course deleted successfully',
+    };
+  }
 }
