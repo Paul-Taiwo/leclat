@@ -40,7 +40,7 @@ export class LecturerService {
   }
 
   async editLecturer(lecturerId: string, dto: LecturerDto) {
-    /* Updating the course with the new data. */
+    /* Updating the lecturer with the new data. */
     const updatedLecturer = await this.prisma.lecturer.update({
       where: {
         id: lecturerId,
@@ -56,16 +56,16 @@ export class LecturerService {
     };
   }
 
-  // async deleteLecturer(courseId: string) {
-  //   /* Deleting the user. */
-  //   await this.prisma.course.delete({
-  //     where: {
-  //       id: courseId,
-  //     },
-  //   });
+  async deleteLecturer(lecturerId: string) {
+    /* Deleting the lecturer. */
+    await this.prisma.lecturer.delete({
+      where: {
+        id: lecturerId,
+      },
+    });
 
-  //   return {
-  //     message: 'Lecturer deleted successfully',
-  //   };
-  // }
+    return {
+      message: 'Lecturer deleted successfully',
+    };
+  }
 }

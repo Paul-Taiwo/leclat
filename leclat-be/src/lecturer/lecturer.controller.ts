@@ -47,10 +47,10 @@ export class LecturerController {
     return this.courseService.editLecturer(courseId, dto);
   }
 
-  // @Delete(':id')
-  // @Roles(Role.USER)
-  // @UseGuards(RolesGuard)
-  // deleteLecturer(@Param('id', ParseUUIDPipe) courseId: string) {
-  //   return this.courseService.deleteLecturer(courseId);
-  // }
+  @Delete(':id')
+  @Roles(Role.USER)
+  @UseGuards(RolesGuard)
+  deleteLecturer(@Param('id', ParseUUIDPipe) courseId: string) {
+    return this.courseService.deleteLecturer(courseId);
+  }
 }
