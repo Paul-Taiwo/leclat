@@ -37,15 +37,15 @@ export class LecturerController {
     return this.courseService.addLecturer(dto);
   }
 
-  // @Patch(':id')
-  // @Roles(Role.USER)
-  // @UseGuards(RolesGuard)
-  // editLecturer(
-  //   @Param('id', ParseUUIDPipe) courseId: string,
-  //   @Body() dto: LecturerDto,
-  // ) {
-  //   return this.courseService.editLecturer(courseId, dto);
-  // }
+  @Patch(':id')
+  @Roles(Role.USER)
+  @UseGuards(RolesGuard)
+  editLecturer(
+    @Param('id', ParseUUIDPipe) courseId: string,
+    @Body() dto: LecturerDto,
+  ) {
+    return this.courseService.editLecturer(courseId, dto);
+  }
 
   // @Delete(':id')
   // @Roles(Role.USER)
