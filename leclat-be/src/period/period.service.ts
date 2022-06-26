@@ -22,50 +22,50 @@ export class PeriodService {
     };
   }
 
-  async addPeriod(dto: PeriodDto) {
-    try {
-      const period = await this.prisma.period.create({
-        data: {
-          ...dto,
-        },
-      });
+  // async addPeriod(dto: PeriodDto) {
+  //   try {
+  //     const period = await this.prisma.period.create({
+  //       data: {
+  //         ...dto,
+  //       },
+  //     });
 
-      return {
-        message: 'Period Created',
-        data: period,
-      };
-    } catch (error) {
-      throw error;
-    }
-  }
+  //     return {
+  //       message: 'Period Created',
+  //       data: period,
+  //     };
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
 
-  async editPeriod(periodId: string, dto: PeriodDto) {
-    /* Updating the period with the new data. */
-    const updatedPeriod = await this.prisma.period.update({
-      where: {
-        id: periodId,
-      },
-      data: {
-        ...dto,
-      },
-    });
+  // async editPeriod(periodId: string, dto: PeriodDto) {
+  //   /* Updating the period with the new data. */
+  //   const updatedPeriod = await this.prisma.period.update({
+  //     where: {
+  //       id: periodId,
+  //     },
+  //     data: {
+  //       ...dto,
+  //     },
+  //   });
 
-    return {
-      message: 'Period updated successfully',
-      data: { ...updatedPeriod },
-    };
-  }
+  //   return {
+  //     message: 'Period updated successfully',
+  //     data: { ...updatedPeriod },
+  //   };
+  // }
 
-  async deletePeriod(periodId: string) {
-    /* Deleting the period. */
-    await this.prisma.period.delete({
-      where: {
-        id: periodId,
-      },
-    });
+  // async deletePeriod(periodId: string) {
+  //   /* Deleting the period. */
+  //   await this.prisma.period.delete({
+  //     where: {
+  //       id: periodId,
+  //     },
+  //   });
 
-    return {
-      message: 'Period deleted successfully',
-    };
-  }
+  //   return {
+  //     message: 'Period deleted successfully',
+  //   };
+  // }
 }

@@ -72,6 +72,7 @@ model Lecturer {
 
 model Period {
   id        String   @id @default(uuid())
+  day       String
   startTime DateTime
   endTime   DateTime
   course    Course   @relation(fields: [courseId], references: [id])
