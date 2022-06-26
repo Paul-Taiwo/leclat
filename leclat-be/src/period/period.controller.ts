@@ -37,15 +37,15 @@ export class PeriodController {
     return this.courseService.addPeriod(dto);
   }
 
-  // @Patch(':id')
-  // @Roles(Role.USER)
-  // @UseGuards(RolesGuard)
-  // editPeriod(
-  //   @Param('id', ParseUUIDPipe) courseId: string,
-  //   @Body() dto: PeriodDto,
-  // ) {
-  //   return this.courseService.editPeriod(courseId, dto);
-  // }
+  @Patch(':id')
+  @Roles(Role.USER)
+  @UseGuards(RolesGuard)
+  editPeriod(
+    @Param('id', ParseUUIDPipe) courseId: string,
+    @Body() dto: PeriodDto,
+  ) {
+    return this.courseService.editPeriod(courseId, dto);
+  }
 
   // @Delete(':id')
   // @Roles(Role.USER)

@@ -39,22 +39,22 @@ export class PeriodService {
     }
   }
 
-  // async editPeriod(periodId: string, dto: PeriodDto) {
-  //   /* Updating the period with the new data. */
-  //   const updatedPeriod = await this.prisma.period.update({
-  //     where: {
-  //       id: periodId,
-  //     },
-  //     data: {
-  //       ...dto,
-  //     },
-  //   });
+  async editPeriod(periodId: string, dto: PeriodDto) {
+    /* Updating the period with the new data. */
+    const updatedPeriod = await this.prisma.period.update({
+      where: {
+        id: periodId,
+      },
+      data: {
+        ...dto,
+      },
+    });
 
-  //   return {
-  //     message: 'Period updated successfully',
-  //     data: { ...updatedPeriod },
-  //   };
-  // }
+    return {
+      message: 'Period updated successfully',
+      data: { ...updatedPeriod },
+    };
+  }
 
   // async deletePeriod(periodId: string) {
   //   /* Deleting the period. */
