@@ -7,8 +7,11 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class CourseService {
   constructor(private prisma: PrismaService) {}
 
-  async getCourses() {
+  async getCourses(classId: string) {
     const courses = await this.prisma.course.findMany({
+      where: {
+        classId,
+      },
       include: {
         Lecturer: true,
         Period: true,

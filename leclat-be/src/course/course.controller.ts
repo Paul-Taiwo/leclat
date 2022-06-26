@@ -12,8 +12,10 @@ import {
 
 import { JwtGuard } from 'src/auth/guard';
 import { RolesGuard } from 'src/auth/guard/role.guard';
+import { GetUser } from 'src/decorators';
 import { Roles } from 'src/decorators/role.decorator';
 import { CourseDto } from 'src/dto/course.dto';
+import { UserDto } from 'src/dto/user.dto';
 import { Role } from 'src/enum';
 
 import { CourseService } from './course.service';
@@ -26,8 +28,8 @@ export class CourseController {
   @Get()
   @Roles(Role.USER)
   @UseGuards(RolesGuard)
-  getCourses() {
-    return this.courseService.getCourses();
+  getCourses(@GetUser() { classId }: UserDto) {
+    return this.courseService.getCourses(classId);
   }
 
   @Post()
