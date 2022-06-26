@@ -37,15 +37,15 @@ export class CourseController {
     return this.courseService.addCourse(dto);
   }
 
-  // @Patch(':id')
-  // @Roles(Role.ADMIN)
-  // @UseGuards(RolesGuard)
-  // editCourse(
-  //   @Param('id', ParseUUIDPipe) courseId: string,
-  //   @Body() dto: CourseDto,
-  // ) {
-  //   return this.courseService.editCourse(courseId, dto);
-  // }
+  @Patch(':id')
+  @Roles(Role.USER)
+  @UseGuards(RolesGuard)
+  editCourse(
+    @Param('id', ParseUUIDPipe) courseId: string,
+    @Body() dto: CourseDto,
+  ) {
+    return this.courseService.editCourse(courseId, dto);
+  }
 
   // @Delete(':id')
   // @Roles(Role.ADMIN)

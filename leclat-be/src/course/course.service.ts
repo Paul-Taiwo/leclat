@@ -19,6 +19,11 @@ export class CourseService {
         Lecturer: true,
         Period: true,
       },
+      orderBy: [
+        {
+          createdAt: 'asc',
+        },
+      ],
     });
 
     return {
@@ -47,37 +52,22 @@ export class CourseService {
     }
   }
 
-  // async editCourse(userId: string, dto: CourseDto) {
-  //   // get the user by id
-  //   const user = await this.prisma.user.findUnique({
-  //     where: {
-  //       id: userId,
-  //     },
-  //   });
+  async editCourse(courseId: string, dto: CourseDto) {
+    /* Updating the course with the new data. */
+    const updatedCourse = await this.prisma.course.update({
+      where: {
+        id: courseId,
+      },
+      data: {
+        ...dto,
+      },
+    });
 
-  //   /* Checking if the user exists. */
-  //   if (user === null) {
-  //     throw new BadRequestException(`No user with id:${userId} found`);
-  //   }
-
-  //   /* Updating the user with the new data. */
-  //   const updatedCourse = await this.prisma.user.update({
-  //     where: {
-  //       id: userId,
-  //     },
-  //     data: {
-  //       ...dto,
-  //     },
-  //   });
-
-  //   /* Deleting the password from the user object before returning it. */
-  //   delete updatedCourse.password;
-
-  //   return {
-  //     message: 'Course updated successfully',
-  //     user: { ...updatedCourse },
-  //   };
-  // }
+    return {
+      message: 'Course updated successfully',
+      data: { ...updatedCourse },
+    };
+  }
 
   // async deleteCourse(userId: string) {
   //   // get the user by id
