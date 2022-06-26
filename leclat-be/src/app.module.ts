@@ -14,6 +14,8 @@ import { CourseService } from './course/course.service';
 import { CourseModule } from './course/course.module';
 import { LecturerModule } from './lecturer/lecturer.module';
 import { LecturerService } from './lecturer/lecturer.service';
+import { PeriodModule } from './period/period.module';
+import { PeriodService } from './period/period.service';
 
 @Module({
   imports: [
@@ -26,6 +28,7 @@ import { LecturerService } from './lecturer/lecturer.service';
     UserModule,
     CourseModule,
     LecturerModule,
+    PeriodModule,
   ],
   controllers: [AppController, UserController],
   providers: [
@@ -34,6 +37,7 @@ import { LecturerService } from './lecturer/lecturer.service';
     ClassService,
     CourseService,
     LecturerService,
+    PeriodService,
   ],
 })
 export class AppModule {}

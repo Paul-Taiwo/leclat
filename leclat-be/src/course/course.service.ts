@@ -64,7 +64,7 @@ export class CourseService {
   }
 
   async deleteCourse(courseId: string) {
-    /* Deleting the user. */
+    /* Deleting the course. */
     await this.prisma.course.delete({
       where: {
         id: courseId,
