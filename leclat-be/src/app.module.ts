@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { TwilioModule } from 'nestjs-twilio';
+import { ScheduleModule } from '@nestjs/schedule';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -16,12 +18,19 @@ import { LecturerModule } from './lecturer/lecturer.module';
 import { LecturerService } from './lecturer/lecturer.service';
 import { PeriodModule } from './period/period.module';
 import { PeriodService } from './period/period.service';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    TwilioModule.forRoot({
+      accountSid: process.env.TWILIO_ACCOUNT_SID,
+      authToken: process.env.TWILIO_AUTH_TOKEN,
+    }),
+    ScheduleModule.forRoot(),
+    TasksModule,
     AuthModule,
     PrismaModule,
     ClassModule,
