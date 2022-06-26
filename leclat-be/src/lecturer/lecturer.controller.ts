@@ -19,7 +19,7 @@ import { Role } from 'src/enum';
 import { LecturerService } from './lecturer.service';
 
 @UseGuards(JwtGuard)
-@Controller('courses')
+@Controller('lecturers')
 export class LecturerController {
   constructor(private readonly courseService: LecturerService) {}
 
@@ -30,27 +30,27 @@ export class LecturerController {
     return this.courseService.getLecturers();
   }
 
-  @Post()
-  @Roles(Role.USER)
-  @UseGuards(RolesGuard)
-  addLecturer(@Body() dto: LecturerDto) {
-    return this.courseService.addLecturer(dto);
-  }
+  // @Post()
+  // @Roles(Role.USER)
+  // @UseGuards(RolesGuard)
+  // addLecturer(@Body() dto: LecturerDto) {
+  //   return this.courseService.addLecturer(dto);
+  // }
 
-  @Patch(':id')
-  @Roles(Role.USER)
-  @UseGuards(RolesGuard)
-  editLecturer(
-    @Param('id', ParseUUIDPipe) courseId: string,
-    @Body() dto: LecturerDto,
-  ) {
-    return this.courseService.editLecturer(courseId, dto);
-  }
+  // @Patch(':id')
+  // @Roles(Role.USER)
+  // @UseGuards(RolesGuard)
+  // editLecturer(
+  //   @Param('id', ParseUUIDPipe) courseId: string,
+  //   @Body() dto: LecturerDto,
+  // ) {
+  //   return this.courseService.editLecturer(courseId, dto);
+  // }
 
-  @Delete(':id')
-  @Roles(Role.USER)
-  @UseGuards(RolesGuard)
-  deleteLecturer(@Param('id', ParseUUIDPipe) courseId: string) {
-    return this.courseService.deleteLecturer(courseId);
-  }
+  // @Delete(':id')
+  // @Roles(Role.USER)
+  // @UseGuards(RolesGuard)
+  // deleteLecturer(@Param('id', ParseUUIDPipe) courseId: string) {
+  //   return this.courseService.deleteLecturer(courseId);
+  // }
 }
