@@ -27,67 +27,25 @@ export class CourseService {
     };
   }
 
-  // async addCourse({ email, name, phone, classId }: CourseDto) {
-  //   /* Hashing the password. */
-  //   const password = await hash('password');
+  async addCourse({ name, code, classId }: CourseDto) {
+    try {
+      // TODO: Check course code uniqueness
+      const course = await this.prisma.course.create({
+        data: {
+          name,
+          code,
+          classId,
+        },
+      });
 
-  //   try {
-  //     /* Checking if the class has a user. */
-  //     const { Course } = await this.prisma.class.findUnique({
-  //       where: {
-  //         id: classId,
-  //       },
-  //       select: {
-  //         Course: true,
-  //       },
-  //     });
-
-  //     /* Checking if the class has a user. */
-  //     if (Course && Course.length) {
-  //       throw new BadRequestException('Class can only have one user');
-  //     }
-
-  //     /* Checking if the user with the email already exists. */
-  //     const userInDb = await this.prisma.user.findUnique({
-  //       where: {
-  //         email,
-  //       },
-  //     });
-
-  //     /* Checking if the user with the email already exists. */
-  //     if (userInDb) {
-  //       throw new BadRequestException(
-  //         `Course with email: ${email} is already attached to a class`,
-  //       );
-  //     }
-
-  //     /* Creating a user. */
-  //     const user = await this.prisma.user.create({
-  //       data: {
-  //         email,
-  //         name,
-  //         phone,
-  //         classId,
-  //         password,
-  //       },
-  //     });
-
-  //     /* Deleting the password from the user object before returning it. */
-  //     delete user.password;
-
-  //     return {
-  //       message: 'Course Created',
-  //       data: user,
-  //     };
-  //   } catch (error) {
-  //     if (error instanceof PrismaClientKnownRequestError) {
-  //       if (error.code === 'P2002') {
-  //         throw new ForbiddenException('Credentials taken');
-  //       }
-  //     }
-  //     throw error;
-  //   }
-  // }
+      return {
+        message: 'Course Created',
+        data: course,
+      };
+    } catch (error) {
+      throw error;
+    }
+  }
 
   // async editCourse(userId: string, dto: CourseDto) {
   //   // get the user by id

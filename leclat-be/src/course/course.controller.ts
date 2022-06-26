@@ -30,12 +30,12 @@ export class CourseController {
     return this.courseService.getCourses();
   }
 
-  // @Post()
-  // @Roles(Role.ADMIN)
-  // @UseGuards(RolesGuard)
-  // addCourse(@Body() dto: CourseDto) {
-  //   return this.courseService.addCourse(dto);
-  // }
+  @Post()
+  @Roles(Role.USER)
+  @UseGuards(RolesGuard)
+  addCourse(@Body() dto: CourseDto) {
+    return this.courseService.addCourse(dto);
+  }
 
   // @Patch(':id')
   // @Roles(Role.ADMIN)
