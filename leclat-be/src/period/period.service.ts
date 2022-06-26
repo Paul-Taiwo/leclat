@@ -56,16 +56,16 @@ export class PeriodService {
     };
   }
 
-  // async deletePeriod(periodId: string) {
-  //   /* Deleting the period. */
-  //   await this.prisma.period.delete({
-  //     where: {
-  //       id: periodId,
-  //     },
-  //   });
+  async deletePeriod(periodId: string) {
+    /* Deleting the period. */
+    await this.prisma.period.delete({
+      where: {
+        id: periodId,
+      },
+    });
 
-  //   return {
-  //     message: 'Period deleted successfully',
-  //   };
-  // }
+    return {
+      message: 'Period deleted successfully',
+    };
+  }
 }

@@ -47,10 +47,10 @@ export class PeriodController {
     return this.courseService.editPeriod(courseId, dto);
   }
 
-  // @Delete(':id')
-  // @Roles(Role.USER)
-  // @UseGuards(RolesGuard)
-  // deletePeriod(@Param('id', ParseUUIDPipe) courseId: string) {
-  //   return this.courseService.deletePeriod(courseId);
-  // }
+  @Delete(':id')
+  @Roles(Role.USER)
+  @UseGuards(RolesGuard)
+  deletePeriod(@Param('id', ParseUUIDPipe) courseId: string) {
+    return this.courseService.deletePeriod(courseId);
+  }
 }
